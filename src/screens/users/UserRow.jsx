@@ -1,5 +1,6 @@
 import style from "./users.module.scss"
 import {userStore} from "../../stores/usersStore";
+import {Link} from "react-router-dom";
 const UserRow = ({user, deleteUser}) => {
     if (!user.access){
         return <tr>
@@ -10,9 +11,9 @@ const UserRow = ({user, deleteUser}) => {
             <td>-</td>
             <td>-</td>
             <td className={style.actions}>
-                <button>
+                <Link to={"/edit_user?id="+user.id}>
                     Edit
-                </button>
+                </Link>
                 <button onClick={()=>deleteUser(user.id)}>
                     Delete
                 </button>
@@ -27,9 +28,9 @@ const UserRow = ({user, deleteUser}) => {
         <td>{user.email ?? "-"}</td>
         <td>{user.birthDate ? new Date(user.birthDate).toLocaleDateString() : "-"}</td>
         <td className={style.actions}>
-            <button>
+            <Link to={"/edit_user?id="+user.id}>
                 Edit
-            </button>
+            </Link>
             <button onClick={()=>deleteUser(user.id)}>
                 Delete
             </button>

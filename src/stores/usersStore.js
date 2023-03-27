@@ -77,6 +77,10 @@ class UsersStore {
         if (sure)
             this._data.users = this._data.users.filter(user=>user.id!==id)
     }
+    editUser = (user)=>{
+        this._data.users = this._data.users.filter(_user=>_user.id!==user.id);
+        this._data.users.push(user)
+    }
 }
 
 const userStore = new UsersStore();
