@@ -1,9 +1,9 @@
 import UserRow from "./UserRow";
 import style from "./users.module.scss"
 import {observer} from "mobx-react-lite";
+import {Link} from "react-router-dom";
 
 const UsersLayout = observer(({users, incrementPage, decrementPage, isDecrementAvailable, isIncrementAvailable}) => {
-    console.log(isDecrementAvailable)
     return <div className={style.wrapper}>
         <table cellSpacing={0} cellPadding={0}>
             <tr>
@@ -24,6 +24,9 @@ const UsersLayout = observer(({users, incrementPage, decrementPage, isDecrementA
                 Next page
             </button>
         </div>
+        <Link to={"/add_user"}>
+            Add user
+        </Link>
     </div>
 
 })

@@ -1,5 +1,6 @@
 import {makeAutoObservable} from 'mobx';
 import deepClone from "../utils/deepClone";
+import generateId from "../utils/generateId";
 
 const BOOT_STATES = {
     NONE: "none",
@@ -50,15 +51,26 @@ class UsersStore {
             this._page++;
         }
     }
-    isDecrementAvailable=()=>{
+    isDecrementAvailable = () => {
         return this._page
     }
-    isIncrementAvailable=()=>{
-        return (this._page+1) * this.RAW_AMOUNT < this._data.users.length
+    isIncrementAvailable = () => {
+        return (this._page + 1) * this.RAW_AMOUNT < this._data.users.length
     }
-    decrementPage=()=>{
-        if (this._page>0)
+    decrementPage = () => {
+        if (this._page > 0)
             this._page--;
+    }
+    addUser = (newUser) => {
+        let id = generateId();
+        while (this._data.users.find(v => {
+            return v.id === id
+        })) {
+            id = generateId();
+        }
+        newUser.id = id;
+        this._data.users.push(newUser)
+        console.log(newUser)
     }
 }
 
