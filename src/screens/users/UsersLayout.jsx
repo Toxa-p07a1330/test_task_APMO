@@ -1,8 +1,8 @@
 import UserRow from "./UserRow";
-import style from "./users.module.scss"
-import {observer} from "mobx-react-lite";
-import {Link} from "react-router-dom";
-import Select from 'react-select';
+import style from "./users.module.scss";
+import { observer } from "mobx-react-lite";
+import { Link } from "react-router-dom";
+import Select from "react-select";
 
 const UsersLayout = observer(({
                                   users,

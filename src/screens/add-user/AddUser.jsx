@@ -1,7 +1,7 @@
-import {useState} from "react";
-import style from "./addUser.module.scss"
-import {userStore} from "../../stores/usersStore";
-import { Navigate  } from 'react-router-dom';
+import { useState } from "react";
+import style from "./addUser.module.scss";
+import { userStore } from "../../stores/usersStore";
+import { Navigate } from "react-router-dom";
 
 const AddUser = () => {
     //ID	Available	Name	Last name	Email	Birthday

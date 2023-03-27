@@ -1,7 +1,7 @@
-import {useEffect, useState} from "react";
-import style from "./editUser.module.scss"
-import {userStore} from "../../stores/usersStore";
-import { Navigate  } from 'react-router-dom';
+import { useState } from "react";
+import style from "./editUser.module.scss";
+import { userStore } from "../../stores/usersStore";
+import { Navigate } from "react-router-dom";
 import getQueryParams from "../../utils/getQueryParams";
 
 const EditUser = () => {
