@@ -81,6 +81,38 @@ class UsersStore {
         this._data.users = this._data.users.filter(_user=>_user.id!==user.id);
         this._data.users.push(user)
     }
+    filterHandler = ()=>{
+
+    }
+    filteringOptions = ()=>{
+        const idList = this._data.users.map((v)=>v.id)
+        const availableList= [true, false];
+        const nameList = this._data.users.map((v)=>v.name)
+        const lastNameList = this._data.users.map((v)=>v.lastName)
+        const emailList = this._data.users.map((v)=>v.email)
+        const birthDate = this._data.users.map((v)=>v.birthDate)
+
+        const filteringOptions = {
+            idList: idList,
+            availableList: availableList,
+            nameList: nameList,
+            lastNameList: lastNameList,
+            emailList: emailList,
+            birthDate: birthDate
+        }
+        Object.keys(filteringOptions).forEach((v)=>{
+            filteringOptions[v] = Array.from(new Set(filteringOptions[v]))
+            filteringOptions[v] = filteringOptions[v].map(v=>{
+                return {
+                    label: v+"",
+                    value: v
+                }
+            })
+        })
+        console.log(filteringOptions)
+        return filteringOptions;
+
+    }
 }
 
 const userStore = new UsersStore();

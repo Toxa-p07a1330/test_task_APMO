@@ -24,6 +24,8 @@ const Users = observer(() => {
                         isIncrementAvailable={userStore.isIncrementAvailable()}
                         isDecrementAvailable={userStore.isDecrementAvailable()}
                         deleteUser={userStore.deleteUser}
+                        filterHandler={userStore.filterHandler}
+                        filteringOptions={userStore.filteringOptions()}
     />
 })
 
