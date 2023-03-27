@@ -34,7 +34,7 @@ const UsersLayout = observer(({
                     />
                 </td>
                 <td className={style.filter}>
-                    <Select onChange={(e) => {
+                    <Select isMulti={true} onChange={(e) => {
                         filterHandler(e, "access")
                     }} options={filteringOptions.availableList}/>
                 </td>

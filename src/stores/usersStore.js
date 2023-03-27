@@ -30,9 +30,8 @@ class UsersStore {
     getData = ()=> {
         const clone = deepClone(this._data.users)
         const boundLeft = this.RAW_AMOUNT * this._page;
-        const boundRight = this.RAW_AMOUNT * (this._page + 1) - 1;
-        let slicedData = clone.slice(boundLeft, boundRight);
-        slicedData = slicedData.filter((row) => {
+        const boundRight = this.RAW_AMOUNT * (this._page + 1);
+        let filtered = clone.filter((row) => {
             let show = true;
             const keys = Object.keys(row);
             keys.forEach(key => {
@@ -45,6 +44,8 @@ class UsersStore {
             })
             return show
         })
+        const  slicedData = filtered.slice(boundLeft, boundRight);
+
         return slicedData
     }
 
