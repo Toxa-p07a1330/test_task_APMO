@@ -18,7 +18,12 @@ const Users = observer(() => {
             Error: Something get wrong
         </div>
     }
-    return <UsersLayout users={userStore.getData().users}/>
+    return <UsersLayout users={userStore.getData()}
+                        decrementPage={userStore.decrementPage}
+                        incrementPage={userStore.incrementPage}
+                        isIncrementAvailable={userStore.isIncrementAvailable()}
+                        isDecrementAvailable={userStore.isDecrementAvailable()}
+    />
 })
 
 

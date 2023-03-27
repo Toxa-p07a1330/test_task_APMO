@@ -1,4 +1,13 @@
 .wrapper {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+
+  & table{
+    width: 100%
+  }
   & td {
     border: 1px solid black;
     padding: 10px;
@@ -7,4 +16,10 @@
     background-color: lightgray;
   }
 
+  & .pagination{
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    width: 80%;
+  }
 }
