@@ -3,7 +3,13 @@ import style from "./users.module.scss"
 import {observer} from "mobx-react-lite";
 import {Link} from "react-router-dom";
 
-const UsersLayout = observer(({users, incrementPage, decrementPage, isDecrementAvailable, isIncrementAvailable}) => {
+const UsersLayout = observer(({
+                                  users,
+                                  incrementPage,
+                                  decrementPage,
+                                  isDecrementAvailable,
+                                  isIncrementAvailable,
+                                  deleteUser}) => {
     return <div className={style.wrapper}>
         <table cellSpacing={0} cellPadding={0}>
             <tr>
@@ -13,8 +19,9 @@ const UsersLayout = observer(({users, incrementPage, decrementPage, isDecrementA
                 <td>Last name</td>
                 <td>Email</td>
                 <td>Birthday</td>
+                <td>Actions</td>
             </tr>
-            {users.map(user => <UserRow user={user} key={user.id}/>)}
+            {users.map(user => <UserRow user={user} key={user.id} deleteUser={deleteUser}/>)}
         </table>
         <div className={style.pagination}>
             <button type='button' onClick={decrementPage} disabled={!isDecrementAvailable}>

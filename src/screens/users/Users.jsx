@@ -23,6 +23,7 @@ const Users = observer(() => {
                         incrementPage={userStore.incrementPage}
                         isIncrementAvailable={userStore.isIncrementAvailable()}
                         isDecrementAvailable={userStore.isDecrementAvailable()}
+                        deleteUser={userStore.deleteUser}
     />
 })
 

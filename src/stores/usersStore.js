@@ -72,6 +72,11 @@ class UsersStore {
         this._data.users.push(newUser)
         console.log(newUser)
     }
+    deleteUser = (id)=>{
+        const sure = window.confirm("Are you sure?")
+        if (sure)
+            this._data.users = this._data.users.filter(user=>user.id!==id)
+    }
 }
 
 const userStore = new UsersStore();
