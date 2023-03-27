@@ -32,7 +32,7 @@ const AddUser = () => {
             <span>
                 isAvailable
             </span>
-            <input type="checkbox" value={isAvailable} onChange={e => setAvailable(e.target.checked)} className={style.checkbox}/>
+            <input type="checkbox" checked={isAvailable} onChange={e => setAvailable(e.target.checked)} className={style.checkbox}/>
         </div>
         <div>
             <span>Name</span>

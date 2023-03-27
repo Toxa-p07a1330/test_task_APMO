@@ -1,4 +1,14 @@
 const UserRow = ({user}) => {
+    if (!user.access){
+        return <tr>
+            <td>{user.id}</td>
+            <td>{user.access?"+":"-"}</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+    }
     return <tr>
         <td>{user.id}</td>
         <td>{user.access?"+":"-"}</td>
