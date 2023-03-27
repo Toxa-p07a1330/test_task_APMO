@@ -1,4 +1,5 @@
-import { makeAutoObservable } from 'mobx';
+import {makeAutoObservable} from 'mobx';
+import deepClone from "../utils/deepClone";
 
 const BOOT_STATES = {
     NONE: "none",
@@ -13,11 +14,27 @@ class UsersStore {
     _state=BOOT_STATES.NONE;
 
     constructor() {
-        this._data={
-            users: []
-        };
         this._state = BOOT_STATES.NONE
-        makeAutoObservable(this);
+        this.getUsersFromServer();
+        makeAutoObservable(this)
+    }
+
+    getState = ()=>{
+        return deepClone(this._state)
+    }
+
+    getUsersFromServer = async ()=>{
+        try{
+            const response = await fetch('https://retoolapi.dev/eqsQ4S/users');
+            const json = await response.json();
+            this._data.users = json;
+            this._state = BOOT_STATES.SUCCESS
+            console.log(this._state)
+        }
+        catch (e){
+            console.log(e)
+            this._state = BOOT_STATES.ERROR
+        }
     }
 }
 
