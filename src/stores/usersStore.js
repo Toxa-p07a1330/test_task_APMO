@@ -98,7 +98,9 @@ class UsersStore {
     }
     filterHandler = (e, category) => {
         this._filter[category] = e
-        console.log(this._filter)
+        if (!e.length){
+            delete this._filter[category]
+        }
     }
     filteringOptions = () => {
         const idList = this._data.users.map((v) => v.id)
