@@ -14,7 +14,8 @@ class UsersStore {
     _data={
         users: []
     };
-    _state=BOOT_STATES.NONE;
+    _state = BOOT_STATES.NONE;
+    _filter = {}
 
 
     constructor() {
@@ -26,11 +27,25 @@ class UsersStore {
     getState = ()=>{
         return deepClone(this._state)
     }
-    getData = ()=>{
-        const clone =deepClone(this._data.users)
-        const boundLeft = this.RAW_AMOUNT*this._page;
-        const boundRight = this.RAW_AMOUNT*(this._page+1)-1;
-        return clone.slice(boundLeft, boundRight)
+    getData = ()=> {
+        const clone = deepClone(this._data.users)
+        const boundLeft = this.RAW_AMOUNT * this._page;
+        const boundRight = this.RAW_AMOUNT * (this._page + 1) - 1;
+        let slicedData = clone.slice(boundLeft, boundRight);
+        slicedData = slicedData.filter((row) => {
+            let show = true;
+            const keys = Object.keys(row);
+            keys.forEach(key => {
+
+                if (this._filter[key] !== undefined) {
+                    let filter = deepClone(this._filter[key].map(filter => filter.value))
+                    const value = row[key]
+                    show = filter.includes(value)
+                }
+            })
+            return show
+        })
+        return slicedData
     }
 
     getUsersFromServer = async ()=>{
@@ -72,25 +87,26 @@ class UsersStore {
         this._data.users.push(newUser)
         console.log(newUser)
     }
-    deleteUser = (id)=>{
+    deleteUser = (id) => {
         const sure = window.confirm("Are you sure?")
         if (sure)
-            this._data.users = this._data.users.filter(user=>user.id!==id)
+            this._data.users = this._data.users.filter(user => user.id !== id)
     }
-    editUser = (user)=>{
-        this._data.users = this._data.users.filter(_user=>_user.id!==user.id);
+    editUser = (user) => {
+        this._data.users = this._data.users.filter(_user => _user.id !== user.id);
         this._data.users.push(user)
     }
-    filterHandler = ()=>{
-
+    filterHandler = (e, category) => {
+        this._filter[category] = e
+        console.log(this._filter)
     }
-    filteringOptions = ()=>{
-        const idList = this._data.users.map((v)=>v.id)
-        const availableList= [true, false];
-        const nameList = this._data.users.map((v)=>v.name)
-        const lastNameList = this._data.users.map((v)=>v.lastName)
-        const emailList = this._data.users.map((v)=>v.email)
-        const birthDate = this._data.users.map((v)=>v.birthDate)
+    filteringOptions = () => {
+        const idList = this._data.users.map((v) => v.id)
+        const availableList = [true, false];
+        const nameList = this._data.users.map((v) => v.name)
+        const lastNameList = this._data.users.map((v) => v.lastName)
+        const emailList = this._data.users.map((v) => v.email)
+        const birthDate = this._data.users.map((v) => v.birthDate)
 
         const filteringOptions = {
             idList: idList,
@@ -109,7 +125,6 @@ class UsersStore {
                 }
             })
         })
-        console.log(filteringOptions)
         return filteringOptions;
 
     }

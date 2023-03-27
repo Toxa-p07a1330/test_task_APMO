@@ -26,12 +26,37 @@ const UsersLayout = observer(({
                 <td>Actions</td>
             </tr>
             <tr>
-                <td className={style.filter}><Select isMulti={true} options={filteringOptions.idList}/> </td>
-                <td className={style.filter}><Select options={filteringOptions.availableList}/></td>
-                <td className={style.filter}><Select isMulti={true} options={filteringOptions.nameList}/></td>
-                <td className={style.filter}><Select isMulti={true} options={filteringOptions.lastNameList}/></td>
-                <td className={style.filter}><Select isMulti={true} options={filteringOptions.emailList}/></td>
-                <td className={style.filter}><Select isMulti={true} options={filteringOptions.birthDate}/></td>
+                <td className={style.filter}>
+                    <Select isMulti={true} options={filteringOptions.idList}
+                            onChange={(e) => {
+                                filterHandler(e, "id")
+                            }}
+                    />
+                </td>
+                <td className={style.filter}>
+                    <Select onChange={(e) => {
+                        filterHandler(e, "access")
+                    }} options={filteringOptions.availableList}/>
+                </td>
+                <td className={style.filter}>
+                    <Select isMulti={true} onChange={(e) => {
+                        filterHandler(e, "name")
+                    }} options={filteringOptions.nameList}/></td>
+                <td className={style.filter}>
+                    <Select isMulti={true} onChange={(e)=>{
+                        filterHandler(e, "lastName")
+                    }} options={filteringOptions.lastNameList}/>
+                </td>
+                <td className={style.filter}>
+                    <Select isMulti={true} onChange={(e)=>{
+                        filterHandler(e, "email")
+                    }} options={filteringOptions.emailList}/>
+                </td>
+                <td className={style.filter}>
+                    <Select isMulti={true} onChange={(e)=>{
+                        filterHandler(e, "birthDate")
+                    }} options={filteringOptions.birthDate}/>
+                </td>
             </tr>
             {users.map(user => <UserRow user={user} key={user.id} deleteUser={deleteUser}/>)}
         </table>
