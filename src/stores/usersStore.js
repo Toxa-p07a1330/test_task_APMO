@@ -22,6 +22,9 @@ class UsersStore {
     getState = ()=>{
         return deepClone(this._state)
     }
+    getData = ()=>{
+        return deepClone(this._data)
+    }
 
     getUsersFromServer = async ()=>{
         try{
